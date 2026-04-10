@@ -1,6 +1,6 @@
-# AI Dev Operating System
+# AI Dev Framework
 
-A structured workflow for building software using AI agents.
+A structured workflow for building software using AI agents with opencode
 
 Includes:
 - Planning (planner agent)
