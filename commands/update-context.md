@@ -1,6 +1,5 @@
 ---
 description: Maintain project context
-model: zhipuai\glm-5.1
 ---
 
 Update @knowledge/tasks/current.md:

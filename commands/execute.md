@@ -1,6 +1,5 @@
 ---
 description: Execute current task
-model: zhipuai\glm-5.1
 ---
 
 Read:

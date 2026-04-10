@@ -1,6 +1,5 @@
 ---
 description: Review implementation
-model: zhipuai\glm-5.1
 ---
 
 ## Review current changes:

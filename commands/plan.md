@@ -1,6 +1,5 @@
 ---
 description: Plan a task
-model: anthropic\CLAUDE-OPUS-4.6
 ---
 
 Read:

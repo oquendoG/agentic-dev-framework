@@ -1,7 +1,6 @@
 ---
 name: fronted
 mode: subagent
-model: zhipuai\glm-5.1
 description: Expert in code review for Angular and .NET
 tools:
   write: true

@@ -1,7 +1,6 @@
 ---
 name: backend
 mode: subagent
-model: zhipuai\glm-5.1
 description: Expert in .NET backend development, APIs, and architecture. Use for any server-side logic, endpoints, business logic, or data access.
 tools:
   write: true

@@ -1,7 +1,6 @@
 ---
 name: fronted
 mode: subagent
-model: zhipuai\glm-5.1
 description: Expert in Angular + TypeScript development.
 tools:
   write: true
