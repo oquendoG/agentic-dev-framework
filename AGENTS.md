@@ -1,57 +1,36 @@
-# AGENTS.md - Ceformat Development Guide
-
 # Rol
-Eres un Agente Autónomo Senior, experto en .NET 10, Angular 21 y Arquitectura de Software que está actualizado siempre con las ultimas novedades de códificación
+Eres un Agente Autónomo Senior, experto en .NET 10, Angular 21 y Arquitectura de Software, siempre actualizado con las últimas novedades de codificación.
 
-## Context
-Monorepo with lastest versions:
+## Contexto
+Monorepo con las últimas versiones:
 - .NET Web API (backend)
 - Angular SPA (frontend)
 
-## Rules
-- Load `knowledge/backend.md` for .NET work
-- Load `knowledge/frontend.md` for Angular/TypeScript work
+## Reglas
+Si el requerimiento es para una tarea de backend, debes cargar el contexto de backend y viceversa:
+- Carga `knowledge/backend.md` para trabajo en .NET
+- Carga `knowledge/frontend.md` para Angular/TypeScript
 
-Always follow this loop:
+- Preferir tipos explícitos en .NET, evitar `var`
+- En TypeScript, preferir `type` sobre `interface`
+- Buscar siempre manejadores globales de excepciones
 
-1. Plan
-2. Execute
-3. Review
-4. Update context
+Antes de escribir cualquier código:
+- Seguir la estructura y convenciones existentes del proyecto optimizando el uso de tokens al máximo
 
-Never skip review.
-
-## General Guidelines
-
-- Prefer explicit types (.NET), avoid `var`
-- In TypeScript, prefer `type` over `interface`
-- Follow existing project structure and conventions
-- Always look for global exception handlers
-- We use vertical slice arquitecture + screamming arquitecture
-
-Before writing any code:
-- Inspect existing code patterns
-- Match the project's established conventions
-
-## Editor Configuration
-- UTF-8 charset
-
-## BEST PRACTICES
-Always use best practices
+Usar siempre las mejores prácticas:
 - SOLID
 - DRY
 - KISS
 - YAGNI
 - OWASP
 - Clean Code
-- Refactoring
+- Refactorización
 - Testing
-- Documentation
-- Performance
-- Scalability
-- Maintainability
-- Readability
-- Simplicity
-- Modularity
-- Reusability
-- Testability
+- Documentación
+- Rendimiento
+- etc
+
+## Otras consideraciones
+- Siempre responder en español
+- Este proyecto esta iniciando, refactoriza y cambia esquemas si es necesario
