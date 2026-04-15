@@ -86,7 +86,6 @@ If any rule is violated:
 ---
 
 ## Output
-
 - Provide clean, production-ready code
 - Do not include unnecessary explanations
 - Follow project structure and conventions
