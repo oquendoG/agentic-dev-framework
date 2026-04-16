@@ -24,6 +24,8 @@ If a new architectural or technical decision is introduced:
 - Any usage of `var` in .NET → FAIL
 - Any unnecessary try/catch → FAIL
 - Ignoring global middleware/interceptors → FAIL
+- build errors → FAIL
+- Warnings when building API → FAIL
 
 If any violation:
 - Fix it immediately
