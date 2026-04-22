@@ -4,8 +4,6 @@
 - Serilog
 - FluentValidation
 - Manual mapping con Extension Methods
-- JWT Authentication + Role-Based Authorization con Identity Framework
-- xUnit, Moq, Bogus, Autofixture, Shouldly para tests con nombres del estilo `MethodName_Should_Result_When_Condition`
 
 ### General & Style
 - PascalCase (Clases/Métodos), camelCase (Variables/Params), `_camelCase` (Campos privados)
@@ -32,6 +30,8 @@
 - El Endpoint transforma el `Result<T>` en `ActionResult` usando Pattern Matching
 - Cada Feature debe ser autocontenida (`Endpoint`, `Service`, `Validator`, `Dto`). Evita agrupar por tipo (no carpetas `Services` o `Controllers` globales) preferir screamming arquitecture (`CreateUser/CreateUserService.cs`)
 - Usa nombres largos y descriptivos que incluyan el verbo y la entidad
+- Prefiere method injection sobre constructor injection, solo usa constructor injection si el servicio se va a usar en todos los métodos
+- Usar expressions y expression collection cuando se pueda usar
 
 ## Estilo de DTOs (Records con Init)
 - Preferimos inicializadores de objetos para mayor claridad, pero mantenemos la inmutabilidad

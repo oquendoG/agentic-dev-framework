@@ -1,5 +1,7 @@
 ## Fronted preferences
-- Angular Signals (WritableSignal, computed, effect, input, output, signal based forms)
+- Angular Signals (WritableSignal, computed, effect, input, output, reactive forms)
+- preferir # para campos privados en lugar de `private`
+- Siempre usar la palabra reservada `public` para campos publicos
 
 - PrimeNG 21 (usando la nueva API de estilos si aplica)
     - Usar un solo `<p-toast />` en `app.html` (componente raíz). No agregar `<p-toast>` en templates de componentes individuales.
@@ -10,7 +12,7 @@
 
 - No usar `try-catch`, usa manejo de excepciones globales con las mejores practicas.
 - **MessageService**: Provisto globalmente en `app.config.ts`. No agregar `providers: [MessageService]` a nivel de componente. Los componentes que necesiten mostrar toasts de éxito pueden inyectar la instancia global directamente.
-- **Forms**: Usar siempre forms basados en signals, https://angular.dev/essentials/signal-forms
+- **Forms**: Usar siempre reactive forms y debounce con `valueChanges`
 - **Control Flow**: Usa `@if`, `@for`, `@switch`
 - **Reactivity**: Usa **Signals** para estado local e `input signals`
 - **Components**: `standalone: true` obligatorio

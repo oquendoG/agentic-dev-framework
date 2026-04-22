@@ -14,7 +14,8 @@ If issues:
 - Add them to task as TODO
 
 If a new architectural or technical decision is introduced:
-- Add it to knowledge/decisions.md
+- Add it to knowledge/decisions.md if it refers to the project
+- Add it to feature folder/decisions.md if it refers to the feature
 - Avoid duplicates
 - Keep it concise
 
