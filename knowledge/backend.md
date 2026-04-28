@@ -11,6 +11,10 @@
 - Usa `var` SOLO para tipos anónimos
 - Prefiere **Programación Funcional** (LINQ, Inmutabilidad, Pure Functions)
 - Es válido usar estilo imperativo si mejora la legibilidad o mezclar ambos
+- Usar collection expressions `List<User> users = [.. otherUsers]` en lugar de `List<User> users = otherUsers.ToList()`
+- Usar Pattern Matching en lugar de `if (x is not null)` o en otros casos donde se puede usar pattern matching
+- Usar Raw string literals para trabajar con strings cuando haya strings complejos
+- Usar `IEnumerable<T>` en lugar de `List<T>` cuando no necesites mutabilidad
 - `async/await` obligatorio en I/O.
 - **Nullability (Strict)**:
   - Distingue siempre entre `Type` (no nulo) y `Type?` (nullable)

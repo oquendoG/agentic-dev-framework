@@ -40,6 +40,12 @@ En el frontend
 - `npm run build` sin errores   
 - `npm run lint` sin errores
 
+## Consideraciones importantes
+- Si algo es ambiguo → preguntar, no asumir. Mostrar el tradeoff, detenerse si hay confusión
+- El mínimo código que resuelve el problema. Sin abstracciones especulativas ni "flexibilidad" que nadie pidió
+- Solo tocar lo que la tarea requiere. No "mejorar" código vecino, no refactorizar lo que funciona
+- Transformar instrucciones vagas en metas verificables antes de escribir una línea. "Agregar validación" → escribir tests para inputs inválidos y hacerlos pasar
+
 ## Otras consideraciones
 - Siempre responder en español
 - Este proyecto esta iniciando, refactoriza y cambia esquemas si es necesario
