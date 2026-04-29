@@ -14,10 +14,9 @@ Antes de escribir cualquier código:
 - Seguir la estructura y convenciones existentes del proyecto optimizando el uso de tokens al máximo
 
 ### Contexto por Feature
-Cada feature tiene su propio `AGENTS.md` y `decisions.md`. Al trabajar en una feature, carga su `AGENTS.md` primero:
-- `src/Ceformat.API/Features/Auth/AGENTS.md`
-- `src/Ceformat.API/Features/Estudiantes/AGENTS.md`
-- etc
+Cada feature tiene su propio `AGENTS.md` y `decisions.md` (backend y frontend). Al trabajar en una feature, carga su `AGENTS.md` primero de acuerdo al tipo de tarea (backend o frontend):
+- `/Features/Auth/AGENTS.md`
+- `/Features/Estudiantes/AGENTS.md`
 
 Usar siempre las mejores prácticas:
 - SOLID
