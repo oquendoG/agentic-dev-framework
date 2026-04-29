@@ -11,6 +11,7 @@ Analyze the request and:
 - Separate backend/frontend/db
 - Identify risks
 - Keep steps atomic
+- Implement backend first wait for frontend confirmation
 
 Write to:
 	@knowledge/tasks/current.md
