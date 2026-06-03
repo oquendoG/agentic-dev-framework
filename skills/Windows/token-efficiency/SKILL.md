@@ -15,6 +15,7 @@ This skill OVERRIDES default behavior.
 - Read only specific ranges:
   (Get-Content file)[start..end]
 - Only output modified code blocks
+- Delegate tasks to operative system when possible, for example, file reading, copying, moving, deleting, renaming, etc.
 
 ## When to use
 - Debugging
