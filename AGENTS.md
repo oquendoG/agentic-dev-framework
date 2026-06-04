@@ -12,7 +12,6 @@ LANG: ES.
 - **Backend task:** `knowledge/backend.md` always
   **Decisions → `knowledge/backend-decisions.md`** just if needed
 - **Frontend task:** `knowledge/frontend.md` just if needed
-- **Frontend task:** `knowledge/frontend.md` always
   **Decisions → `knowledge/frontend-decisions.md`** just if needed
 - **Feature-specific work:** `Features/[Name]/AGENTS.md` if exists (check before creating new feature)
 - Always use `token-efficiency` skill
@@ -29,42 +28,9 @@ LANG: ES.
 - If flows or arquitecture changes, document it in `knowledge/manual/manual_tecnico_dev.md` in spanish
 - Save history in `knowledge/` based on pattern in folder
 - If Arquitecture changes update context files knowledge/backend.md and knowledge/frontend_structure.md
-- Update current project state in `knowledge/current_state.md` based on finished tasks for example
-```markdown
-# Current state
+- Update current project state in `knowledge/current_state.md` based on finished tasks
 
-Authentication
-- Entra ID
-
-Frontend
-- Angular 21
-- Signals
-- SignalStore
-
-Backend
-- Vertical Slice Architecture
-
-Completed
-- Users
-
-In progress
-- Permissions
-``` 
-
-- Save frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necesary info needed to avoid the agent uses find, tree, glob or windows equivalents, for example
-```markdown
-Application
-    Students/
-
-Domain
-    Shared/
-
-Infrastructure
-    Persistence/
-
-Api
-    Controllers/
-```
+- Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necesary info needed to avoid the agent uses find, tree, glob or windows equivalents
 
 ## Tech Rules
 - C#: explicit types (no var).
