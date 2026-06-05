@@ -26,10 +26,9 @@ LANG: ES.
   - `Application/Features/[Name]/decisions.md` — feature-local decisions (non-obvious only, reference knowledge/ for cross-feature ones)
 - **No duplication.** Feature decisions.md references knowledge/ instead of repeating content.
 - If flows or arquitecture changes, document it in `knowledge/manual/manual_tecnico_dev.md` in spanish
-- Save history in `knowledge/` based on pattern in folder
+- Copy `current.md` and rename it to `[next number][task-name].md` to `knowledge/tasks/history/`
 - If Arquitecture changes update context files knowledge/backend.md and knowledge/frontend_structure.md
 - Update current project state in `knowledge/current_state.md` based on finished tasks
-
 - Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necesary info needed to avoid the agent uses find, tree, glob or windows equivalents
 
 ## Tech Rules
