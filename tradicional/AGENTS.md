@@ -9,10 +9,11 @@ LANG: ES.
     `knowledge/current_state.md` 
     `knowledge/backend_index.md`
     `knowledge/frontend_index.md`
-- **Backend task:** `knowledge/backend.md` always
-  **Decisions → `knowledge/backend-decisions.md`** just if needed
-- **Frontend task:** `knowledge/frontend.md` just if needed
-  **Decisions → `knowledge/frontend-decisions.md`** just if needed
+- **Backend task:** `knowledge/architecture/backend.md` always
+  - Read also: `knowledge/architecture/arquitecture-backend.md`, `knowledge/architecture/backend-patterns.md`
+  **Decisions → `knowledge/decisions/traditional-decisions.md`** just if needed
+- **Frontend task:** `knowledge/architecture/frontend.md` just if needed
+  - Read also: `knowledge/architecture/arquitecture-frontend.md`
 - **Feature-specific work:** `Features/[Name]/AGENTS.md` if exists (check before creating new feature)
 - Always use `token-efficiency` skill
 
@@ -21,15 +22,14 @@ LANG: ES.
 - **Obvious = inferrable from code.** If the code makes the decision self-evident, don't document it.
 - **Non-obvious = requires context the code doesn't show.** Examples: non-intuitive config names, claim quirks, workarounds for platform bugs, security rationale, intentional trade-offs.
 - **Structure:**
-  - `knowledge/backend-decisions.md` — cross-feature backend decisions (non-obvious only)
-  - `knowledge/frontend-decisions.md` — cross-feature frontend decisions (non-obvious only)
-  - `Application/Features/[Name]/decisions.md` — feature-local decisions (non-obvious only, reference knowledge/ for cross-feature ones)
+  - `knowledge/decisions/traditional-decisions.md` — cross-feature decisions (non-obvious only) - English
+  - `Features/[Name]/decisions.md` — feature-local decisions (non-obvious only) - English
 - **No duplication.** Feature decisions.md references knowledge/ instead of repeating content.
-- If flows or arquitecture changes, document it in `knowledge/manual/manual_tecnico_dev.md` in spanish
-- Copy `current.md` and rename it to `[next number][task-name].md` to `knowledge/tasks/history/`
-- If Arquitecture changes update context files knowledge/backend.md and knowledge/frontend_structure.md
+- If flows or architecture changes, document it in `knowledge/manual/manual_tecnico_dev.md` - spanish
+- Copy `current.md` and rename it to `[next number][task-name].md` to `knowledge/tasks/history/` - spanish
+- If Architecture changes update context files `knowledge/architecture/backend.md` and `knowledge/architecture/arquitecture-backend.md`
 - Update current project state in `knowledge/current_state.md` based on finished tasks
-- Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necesary info needed to avoid the agent uses find, tree, glob or windows equivalents
+- Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necessary info needed to avoid the agent uses find, tree, glob or windows equivalents
 
 ## Tech Rules
 - C#: explicit types (no var).
@@ -38,15 +38,15 @@ LANG: ES.
 - Forms + Signals: use `toSignal(form.valueChanges)` for reactive state, never `[(ngModel)]`.
 - Code entity names: Spanish. Knowledge/docs: English.
 - Standards: SOLID, DRY, KISS, YAGNI, OWASP, Clean Code.
-- Always search for Exception Middleware and Global interceptor before use try catch - don't use try catch
-- Generate short summaries(<Summary> tag) and comments in spanish for human devs where could be confuse or unclear
+- Always search for Exception Middleware and Global interceptor before using try-catch — don't use try-catch.
+- Generate short summaries(<Summary> tag) and comments in spanish for human devs where could be confusing or unclear
 
 ## Execution Protocol
 - Minimal viable code. Touch ONLY required files.
 - No speculative abstractions. No unsolicited refactoring.
 - Ambiguity → ask. Vague task → convert to verifiable goals first.
-- **Architecture violation → stop and explain.** If a request breaks layer boundaries, DDD rules, or project conventions (e.g., putting controllers in Application, adding web deps to domain layer), warn the user with the specific rule being violated and why before proposing or implementing anything.
-- Phase 1 context: single tenant, no Finbuckle. Scaffold for Phase 2 but don't pre-implement.
+- **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
+- Phase 1 context: single tenant. Scaffold for Phase 2 but don't pre-implement.
 
 ## Restrictions
 - Never perform full repository discovery

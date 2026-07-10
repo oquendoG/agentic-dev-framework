@@ -1,6 +1,12 @@
-### Definición del Patrón Result
+---
+type: ArchitectureGuide
+title: Traditional Backend Result Pattern
+description: Exact contract and C# implementation of the Result pattern to manage errors without throwing exceptions.
+timestamp: 2026-07-10T10:50:54-05:00
+---
 
-(Usa esta implementación exacta, no la modifiques)
+### Definición del Patrón Result
+Use this exact C# implementation for operations results:
 
 ```csharp
 public interface IResult<out TValue>
@@ -68,5 +74,4 @@ public static class ErrorExtensions
         return string.Join(separator, error.ErrorMessages);
     }
 }
-
 ```

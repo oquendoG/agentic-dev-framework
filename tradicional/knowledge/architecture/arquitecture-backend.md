@@ -1,4 +1,11 @@
-## PROJECT STRUCTURE (SCREAMING ARCHITECTURE)
+---
+type: ArchitectureGuide
+title: Traditional Backend Structure
+description: Screaming architecture and folder layout for traditional services and controllers backend.
+timestamp: 2026-07-10T10:50:54-05:00
+---
+
+## Project Structure (Screaming Architecture)
 El proyecto debe seguir estrictamente esta estructura de carpetas. Los nombres de archivos deben ser explícitos sobre su intención.
 
 ```text
