@@ -14,4 +14,4 @@ Analyze the request and:
 - Implement backend first wait for frontend confirmation
 
 Write to:
-	@knowledge/tasks/current.md
+	@knowledge/tasks/[next number]-[task-name].md

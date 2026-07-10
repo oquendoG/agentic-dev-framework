@@ -3,7 +3,7 @@ description: Execute current task
 ---
 
 Read:
-- @knowledge/tasks/current.md
+- @knowledge/tasks/[next number]-[task-name].md
 - @AGENTS.md
 
 Before writing code:
@@ -25,6 +25,6 @@ If the task involves business logic:
 - Read @knowledge/project.md
 
 When finishing the task:
-- Guardar historial: copiar @knowledge/tasks/current.md a @knowledge/tasks/history/[task-name].md (se sobrescribe luego).
+- Guardar historial: Asegurar que el archivo de la tarea en @knowledge/tasks/[next number]-[task-name].md esté actualizado con los cambios realizados y los resultados de las pruebas.
 - Documentación de la feature: crear/actualizar AGENTS.md (resumen token-friendly) y decisions.md (decisiones clave) backend y frontend.
 - En AGENTS.md, referenciar decisions.md como fuente de decisiones.

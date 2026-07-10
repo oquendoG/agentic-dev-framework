@@ -14,7 +14,7 @@ If issues:
 - Add them to task as TODO
 
 If a new architectural or technical decision is introduced:
-- Add it to knowledge/decisions.md if it refers to the project
+- Add it to the corresponding global decisions log in knowledge/decisions/ (e.g. traditional-decisions.md or backend-decisions.md/frontend-decisions.md) if it refers to the project.
 - Add it to feature folder/decisions.md if it refers to the feature
 - Avoid duplicates
 - Keep it concise
@@ -39,4 +39,4 @@ If the code introduces a pattern that contradicts existing architecture:
 - Rewrite it to match the project
 
 ## Update:
-	@knowledge/tasks/current.md
+	@knowledge/tasks/[next number]-[task-name].md

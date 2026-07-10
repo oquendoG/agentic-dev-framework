@@ -2,7 +2,7 @@
 description: Maintain project context
 ---
 
-Update @knowledge/tasks/current.md:
+Update @knowledge/tasks/[next number]-[task-name].md:
 
 - Clean completed steps
 - Summarize decisions

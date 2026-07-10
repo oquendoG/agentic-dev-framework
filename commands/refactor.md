@@ -3,7 +3,7 @@ description: Refactor the current task
 ---
 
 Read:
-- @knowledge/tasks/current.md
+- @knowledge/tasks/[next number]-[task-name].md
 - @AGENTS.md
 
 Before writing code:
@@ -25,6 +25,6 @@ If the task involves business logic:
 - Read @knowledge/project.md
 
 When finishing the task:
-- save history: copy @knowledge/tasks/current.md to @knowledge/tasks/history/[task-name].md (overwritten later).
+- save history: Ensure the task file @knowledge/tasks/[next number]-[task-name].md is updated with the implemented changes and test outcomes.
 - Documentación de la feature: create/update AGENTS.md (summary token-friendly) and decisions.md backend and frontend.
 - In AGENTS.md, reference decisions.md as decision source.
