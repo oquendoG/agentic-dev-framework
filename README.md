@@ -6,7 +6,7 @@
 
 A structured, agent-friendly development framework designed for rapid software delivery using AI coding agents under the **Google OKF v0.1** knowledge standard.
 
-This framework is split into two independent architectural boilerplates, allowing you to choose the design pattern that best fits your project scope.
+This framework is split into three independent architectural boilerplates, allowing you to choose the design pattern that best fits your project scope.
 
 ### Repository Structure
 
@@ -14,6 +14,10 @@ This framework is split into two independent architectural boilerplates, allowin
 📁 agentic-dev-framework
 ├── 📁 ddd/                      # Domain-Driven Design Boilerplate (Vertical Slice + Tactical DDD)
 │   ├── AGENTS.md                # Agent instructions & context loader for DDD
+│   └── 📁 knowledge/            # OKF v0.1 Knowledge Bundle
+│
+├── 📁 rich-domain/              # Rich Domain Model Boilerplate (Entities with Behavior + private set)
+│   ├── AGENTS.md                # Agent instructions & context loader for Rich Domain
 │   └── 📁 knowledge/            # OKF v0.1 Knowledge Bundle
 │
 ├── 📁 tradicional/              # Traditional Boilerplate (MVC / Services + Controllers)
@@ -31,7 +35,13 @@ Designed for larger, complex enterprise systems requiring strong domain logic se
 * **Frontend:** Angular 21, Signals, state management using local `@ngrx/signals` stores, functional guards/interceptors.
 * **Storage/Auditing:** Entity Framework Core + Npgsql, Audit.EntityFramework tracking.
 
-#### 2. Tradicional (Services & Controllers)
+#### 2. Rich Domain Model (Recommended for most projects)
+Designed for systems that need domain behavior without full DDD complexity.
+* **Backend:** .NET 10, Vertical Slice Architecture, entities with `private set` and factory methods, `Result<T>` for business errors.
+* **Frontend:** Angular 21, Signals, PrimeNG components.
+* **Encapsulation:** Entities control their own state through factory and update methods.
+
+#### 3. Tradicional (Services & Controllers)
 Designed for lightweight, data-centric systems or simpler microservices.
 * **Backend:** Thin controllers directly injecting Transactional Services and DbContext (no Mediator, no repository abstractions).
 * **Frontend:** Standard standalone Angular 21 components with Signal reactive bindings.
@@ -41,7 +51,7 @@ Designed for lightweight, data-centric systems or simpler microservices.
 
 When initializing a new project:
 
-1. **Choose your flavor:** Copy either the `/ddd/` or the `/tradicional/` folder directly to the root of your new project repository.
+1. **Choose your flavor:** Copy the `/ddd/`, `/rich-domain/`, or `/tradicional/` folder directly to the root of your new project repository.
 2. **Setup Workspace Rules:** Ensure the copied `AGENTS.md` is placed at the workspace root, as your AI agent relies on it for loading rules and context.
 3. **Configure Project Metadata:** Initialize your project context inside `knowledge/project.md` and document the system status in `knowledge/current_state.md`.
 4. **Define Tasks:** Create your task files directly inside `knowledge/tasks/[next-number]-[task-name].md` when starting development milestones.
@@ -62,7 +72,7 @@ The `/commands/` directory contains structured Markdown workflows that you can f
 
 Un entorno de desarrollo estructurado y optimizado para agentes de IA, diseñado para la entrega rápida de software utilizando agentes autónomos bajo el estándar de conocimiento **Google OKF v0.1**.
 
-Este framework está dividido en dos boilerplates de arquitectura independientes, permitiéndote elegir el patrón de diseño que mejor se adapte al alcance de tu proyecto.
+Este framework está dividido en tres boilerplates de arquitectura independientes, permitiéndote elegir el patrón de diseño que mejor se adapte al alcance de tu proyecto.
 
 ### Estructura del Repositorio
 
@@ -70,6 +80,10 @@ Este framework está dividido en dos boilerplates de arquitectura independientes
 📁 agentic-dev-framework
 ├── 📁 ddd/                      # Plantilla de Domain-Driven Design (Vertical Slice + DDD Táctico)
 │   ├── AGENTS.md                # Instrucciones del agente y cargador de contexto para DDD
+│   └── 📁 knowledge/            # Bundle de conocimiento OKF v0.1
+│
+├── 📁 rich-domain/              # Plantilla de Dominio Rico (Entidades con Comportamiento + private set)
+│   ├── AGENTS.md                # Instrucciones del agente y cargador de contexto para Dominio Rico
 │   └── 📁 knowledge/            # Bundle de conocimiento OKF v0.1
 │
 ├── 📁 tradicional/              # Plantilla Tradicional (MVC / Servicios + Controladores)
@@ -87,7 +101,13 @@ Diseñado para sistemas empresariales complejos y de gran tamaño que requieren 
 * **Frontend:** Angular 21, Signals, gestión de estado con almacenes locales `@ngrx/signals`, guards e interceptores funcionales.
 * **Persistencia/Auditoría:** Entity Framework Core + Npgsql, seguimiento con Audit.EntityFramework.
 
-#### 2. Tradicional (Servicios y Controladores)
+#### 2. Dominio Rico (Recomendado para la mayoría de proyectos)
+Diseñado para sistemas que necesitan comportamiento de dominio sin la complejidad completa de DDD.
+* **Backend:** .NET 10, Vertical Slice Architecture, entidades con `private set` y métodos factory, `Result<T>` para errores de negocio.
+* **Frontend:** Angular 21, Signals, componentes PrimeNG.
+* **Encapsulamiento:** Las entidades controlan su estado a través de métodos factory y de actualización.
+
+#### 3. Tradicional (Servicios y Controladores)
 Diseñado para sistemas ligeros orientados a datos o microservicios sencillos.
 * **Backend:** Controladores delgados que inyectan directamente Servicios Transaccionales y el DbContext (sin Mediator, sin abstracciones de repositorio).
 * **Frontend:** Componentes standalone estándar de Angular 21 con bindings reactivos basados en Signals.
@@ -97,7 +117,7 @@ Diseñado para sistemas ligeros orientados a datos o microservicios sencillos.
 
 Al iniciar un nuevo proyecto:
 
-1. **Elige la arquitectura:** Copia la carpeta `/ddd/` o la carpeta `/tradicional/` directamente en la raíz de tu nuevo repositorio de proyecto.
+1. **Elige la arquitectura:** Copia la carpeta `/ddd/`, `/rich-domain/` o la carpeta `/tradicional/` directamente en la raíz de tu nuevo repositorio de proyecto.
 2. **Configura las Reglas del Workspace:** Asegúrate de que el archivo `AGENTS.md` copiado quede en la raíz del workspace, ya que tu agente de IA lo necesita para cargar reglas y contexto.
 3. **Configura los Metadatos del Proyecto:** Inicializa el contexto de tu proyecto en `knowledge/project.md` y documenta el estado del sistema en `knowledge/current_state.md`.
 4. **Define las Tareas:** Crea tus archivos de tareas directamente dentro de `knowledge/tasks/[siguiente-numero]-[nombre-tarea].md` al iniciar tus hitos de desarrollo.
