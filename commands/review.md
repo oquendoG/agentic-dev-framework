@@ -38,5 +38,13 @@ Also:
 If the code introduces a pattern that contradicts existing architecture:
 - Rewrite it to match the project
 
+Check:
+- introduced errors
+- possible bugs
+- possible performance issues and optimize them (Memory or Span if necessary)
+- n+1 query problems
+- other errors
+- security problems
+
 ## Update:
 	@knowledge/tasks/[next number]-[task-name].md
