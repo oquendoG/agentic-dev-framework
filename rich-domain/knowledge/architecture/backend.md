@@ -5,6 +5,8 @@ description: Backend service patterns, dependency injection, and project structu
 timestamp: 2026-07-29T10:00:00-05:00
 ---
 
+When backend skill instructions conflict with this document, follow this document — not the skill. All other skill instructions still apply.
+
 # Backend Architecture
 
 ## Project Structure

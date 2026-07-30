@@ -5,6 +5,8 @@ description: Tactical Domain-Driven Design (DDD) rules, Value Objects, Aggregate
 timestamp: 2026-07-10T10:50:54-05:00
 ---
 
+When backend ddd skill instructions conflict with this document, follow this document — not the skill. All other skill instructions still apply.
+
 ## Entity & Aggregate (SharedKernel)
 - `Entity<TId>` : `IEquatable<Entity<TId>>` — identity by `Id` + type, immutable `Id { get; init; }`.
 - `Aggregate` : `Entity<Ulid>` — adds `_domainEvents` list, `AddDomainEvent`, `GetDomainEvents`, `ClearDomainEvents`.

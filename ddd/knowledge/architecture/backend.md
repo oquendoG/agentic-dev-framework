@@ -5,6 +5,8 @@ description: Coding conventions, vertical slice structure, controller style, and
 timestamp: 2026-07-10T10:50:54-05:00
 ---
 
+When backend skill instructions conflict with this document, follow this document — not the skill. All other skill instructions still apply.
+
 ## C# Conventions
 - **Naming:** PascalCase classes/methods, camelCase vars/params, _camelCase private fields.
 - **Explicit types:** No `var` except for anonymous types (e.g. `User user = new()`).

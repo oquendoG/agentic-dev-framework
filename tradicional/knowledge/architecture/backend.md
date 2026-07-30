@@ -5,6 +5,8 @@ description: Coding style, vertical slice, EF Core data access, and modern C# co
 timestamp: 2026-07-10T10:50:54-05:00
 ---
 
+When backend skill instructions conflict with this document, follow this document — not the skill. All other skill instructions still apply.
+
 ## Libraries & Tools
 - Entity Framework Core (Latest)
 - Services with Dependency Injection (No MediatR / lightweight direct DI)
