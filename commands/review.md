@@ -4,47 +4,46 @@ description: Review implementation
 
 ## Review current changes:
 
-- Code quality
-- Architecture alignment
-- Edge cases
-- Overengineering / underengineering
+- Code quality & TDD compliance
+- Layered Precedence adherence (`AGENTS.md` & architecture docs > Skills)
+- Architecture alignment (Vertical Slice, screaming architecture, Result<T>)
+- Edge cases & security audits
+- Performance checks (No N+1 queries, `AsNoTracking()`, `AsSplitQuery()`, Span/Memory optimization)
 
-If issues:
-- Fix them OR
-- Add them to task as TODO
+If issues found:
+- Fix them immediately OR add them to the task checklist as `- [ ] TODO`.
 
 If a new architectural or technical decision is introduced:
-- Add it to the corresponding global decisions log in knowledge/decisions/ (e.g. traditional-decisions.md or backend-decisions.md/frontend-decisions.md) if it refers to the project.
-- Add it to feature folder/decisions.md if it refers to the feature
-- Avoid duplicates
-- Keep it concise
+- Add it to the corresponding global decisions log in `knowledge/decisions/` (e.g., `traditional-decisions.md` or `backend-decisions.md`/`frontend-decisions.md`).
+- Add it to `Features/[Name]/AGENTS.md` or `decisions.md` if feature-specific.
+- Avoid duplicates, keep it concise.
 
-## Check for rule violations:
+---
 
-### Critical checks
-- Any usage of `var` in .NET → FAIL
-- Any unnecessary try/catch → FAIL
-- Ignoring global middleware/interceptors → FAIL
-- build errors → FAIL
-- Warnings when building API → FAIL
+## Check for rule violations (CRITICAL CHECKLIST):
 
-If any violation:
-- Fix it immediately
-- Do not accept the implementation
+### C# & .NET Violations (FAIL immediately if found)
+- **`var` usage**: Any usage of `var` for named types → **FAIL** (Use explicit `Tipo name = new()`; `var` allowed ONLY for anonymous types).
+- **Target-Typed `new()`**: Duplicating class name `Type name = new Type()` → **FAIL**.
+- **Repository Pattern**: Creating Repository abstractions in traditional/rich-domain → **FAIL** (Inject `DbContext` directly).
+- **Exception Flow**: Throwing exceptions for business errors instead of returning `Result<T>` → **FAIL**.
+- **`try/catch`**: Any `try/catch` in internal services or controllers → **FAIL** (Global middleware/handlers cover internal flow).
+- **Magic Strings**: Hardcoded error messages or claims in business logic → **FAIL** (Use static constants in `Domain/Constants`).
 
-Also:
-- Ensure consistency with existing codebase
+### TypeScript & Angular Violations (FAIL immediately if found)
+- **Interfaces**: Using `interface` instead of `type` for models/DTOs → **FAIL**.
+- **Forms**: Using template-driven forms (`ngModel`) or Reactive Forms when Signal Forms could be used → **FAIL**.
+- **Reactivity**: Using RxJS when Signals (`WritableSignal`, `computed`, `toSignal()`) can be used → **FAIL**.
+- **DI**: Using constructor injection instead of `inject()` function → **FAIL**.
 
-If the code introduces a pattern that contradicts existing architecture:
-- Rewrite it to match the project
+### Automated Build & Test Checks
+- **`dotnet build`**: Any build errors or warnings → **FAIL**.
+- **`dotnet test`**: Missing tests or failing tests in `tests/` project → **FAIL**.
 
-Check:
-- introduced errors
-- possible bugs
-- possible performance issues and optimize them (Memory or Span if necessary)
-- n+1 query problems
-- other errors
-- security problems
+If any violation exists:
+- Fix it immediately before accepting implementation.
 
-## Update:
-	@knowledge/tasks/[next number]-[task-name].md
+---
+
+## Update Task Progress:
+Verify that all task checklist items are marked as completed (`- [x]`) in `@knowledge/tasks/[modulo]/[siguiente-numero]-[nombre-tarea].md` and record verified `dotnet test` results.

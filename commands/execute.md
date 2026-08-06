@@ -3,32 +3,28 @@ description: Execute current task
 ---
 
 Read:
-- @knowledge/tasks/[next number]-[task-name].md
+- @knowledge/tasks/[modulo]/[siguiente-numero]-[nombre-tarea].md
 - @AGENTS.md
+- @knowledge/architecture/backend.md
+- @knowledge/architecture/frontend.md
 
-Before writing code:
-- Validate approach against project rules
+Before writing implementation code:
+1. **Scaffolding Check**: If this task creates a brand new feature or slice that has not been scaffolded, execute the scaffolding steps defined in `/new-feature` first.
+2. **Validate Approach**: Ensure architecture alignment (Vertical Slice, screaming architecture, `Result<T>`).
 
 TDD Implementation Workflow (Red-Green-Refactor):
-1. **Red**: Trigger test creation skill to write failing unit/integration tests in `tests/` defining expected behavior. Run `dotnet test` to confirm test fails.
-2. **Green**: Write minimal implementation code until `dotnet test` passes cleanly.
-3. **Refactor**: Clean up and optimize while ensuring all tests remain green.
+1. **Red (Failing Test)**: Trigger test creation skills to write failing unit/integration tests in `tests/` defining expected behavior and edge cases. Run `dotnet test` to confirm tests fail. Mark checklist item `- [x] TDD Red`.
+2. **Green (Passing Code)**: Write minimal implementation code in the feature service/endpoint until `dotnet test` passes cleanly. Mark checklist item `- [x] TDD Green`.
+3. **Refactor (Clean Code)**: Clean up and optimize while ensuring all tests remain 100% green. Mark checklist item `- [x] TDD Refactor`.
 
-After implementation:
-- Self-check:
-  - No `var` used for named types (allowed ONLY for anonymous types)
-  - Target-typed `new()` used (`Person person = new()`)
-  - Pattern matching used where semantic and readable
-  - No try/catch for flow
-  - Architecture respected
+Self-Check during implementation:
+- Explicit `Tipo varName = new();` (NO `var` for named types; `var` allowed ONLY for anonymous types).
+- Target-typed `new()` used without repeating class name.
+- Pragmatic pattern matching used where semantic and readable.
+- `try/catch` used ONLY on external boundaries.
+- Angular Signal Forms preferred over Reactive Forms.
 
-If violations exist:
-- Fix them before finishing
-
-If the task involves business logic:
-- Read @knowledge/project.md
-
-When finishing the task:
-- Guardar historial: Asegurar que el archivo de la tarea en @knowledge/tasks/[next number]-[task-name].md esté actualizado con los cambios realizados y los resultados de las pruebas (`dotnet test`).
-- Documentación de la feature: crear/actualizar AGENTS.md (resumen token-friendly) y decisions.md (decisiones clave) backend y frontend.
-- En AGENTS.md, referenciar decisions.md como fuente de decisiones.
+When finishing implementation:
+1. **Run Review Audit**: Perform the critical checklist audit defined in `/review` (or mention `/review`).
+2. **Update Task Checklist & Log**: Mark all completed checklist items (`- [x]`) in `@knowledge/tasks/[modulo]/[siguiente-numero]-[nombre-tarea].md` and update execution log with `dotnet test` results.
+3. **Document Decisions**: Create/update `Features/[Name]/AGENTS.md` and `decisions.md` if non-obvious decisions were introduced.
