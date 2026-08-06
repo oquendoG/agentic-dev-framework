@@ -1,6 +1,6 @@
 # Role
 Autonomous Agent. Stack: .NET 10, Angular 21+. OS: Windows 11
-LANG: ES.
+Answer LANG: ES.
 
 ## Layered Precedence (Regla de Capas)
 - `AGENTS.md`, `knowledge/architecture/backend.md`, `knowledge/architecture/backend-ddd.md` y `knowledge/architecture/frontend.md` tienen máxima prioridad sobre cualquier recomendación de skills globales o locales.
@@ -35,13 +35,20 @@ LANG: ES.
 - **Frontend / Angular:** Trigger relevant Angular and modern web skills.
 - **Testing:** Trigger test creation skills for test creation, and test runner skills for running/diagnosing `dotnet test`.
 
+## Execution Protocol (TDD & Scope)
+- **TDD Workflow (Red-Green-Refactor):** Mandatory for backend business logic. Write failing unit/integration tests first (Red), implement minimal code to pass (Green), and refactor.
+- **Scope Strictness:** Minimal viable code. Touch ONLY required files. NO speculative abstractions. NO unsolicited refactoring of neighbor code.
+- **Ambiguity:** Stop and ask. Do not assume. Show tradeoffs.
+- **Vague Tasks:** Convert to verifiable goals before coding (write failing tests for invalid inputs first).
+- **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
+
 ## Decisions Documentation when finishing the task
 - **Only document non-obvious decisions.** An agent reading the code cannot infer the "why" behind a choice — that's what decisions.md captures.
 - **Obvious = inferrable from code.** If the code makes the decision self-evident, don't document it.
 - **Non-obvious = requires context the code doesn't show.** Examples: non-intuitive config names, claim quirks, workarounds for platform bugs, security rationale, intentional trade-offs.
 - **Structure:**
-  - `knowledge/decisions/backend-decisions.md` — cross-feature backend decisions (non-obvious only) - English
-  - `knowledge/decisions/frontend-decisions.md` — cross-feature frontend decisions (non-obvious only) - English
+  - `knowledge/decisions/backend-decisions.md` — cross-feature decisions (non-obvious only) - English
+  - `knowledge/decisions/frontend-decisions.md` — cross-feature decisions (non-obvious only) - English
   - `Application/Features/[Name]/AGENTS.md` with general info of feature - English
   - `Application/Features/[Name]/decisions.md` — feature-local decisions - English
 - **No duplication.** Feature decisions.md references knowledge/ instead of repeating content.
@@ -50,13 +57,6 @@ LANG: ES.
 - If Architecture changes update context files `knowledge/architecture/backend.md` and `knowledge/architecture/frontend-structure.md` - English
 - Update current project state in `knowledge/current_state.md` based on finished tasks - English
 - Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necessary info needed to avoid the agent uses find, tree, glob or windows equivalents - English
-
-## Execution Protocol
-- Minimal viable code. Touch ONLY required files.
-- No speculative abstractions. No unsolicited refactoring.
-- Ambiguity → ask. Vague task → convert to verifiable goals first.
-- **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
-- Phase 1 context: single tenant. Scaffold for Phase 2 but don't pre-implement.
 
 ## Restrictions
 - Never perform full repository discovery

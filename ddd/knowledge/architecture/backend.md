@@ -1,7 +1,7 @@
 ---
 type: ArchitectureGuide
 title: Backend Guidelines (DDD)
-description: Coding conventions, vertical slice structure, controller style, and resilience in C# for DDD setups.
+description: Coding conventions, vertical slice structure, controller style, TDD, and resilience in C# for DDD setups.
 timestamp: 2026-08-06T15:31:00-05:00
 ---
 
@@ -13,7 +13,16 @@ timestamp: 2026-08-06T15:31:00-05:00
 
 ---
 
-## 1. C# Syntax & Coding Conventions
+## 1. Test-Driven Development (TDD) Workflow
+
+Mandatory development workflow for business logic and backend features:
+1. **Red (Failing Test)**: Write unit/integration tests first in the `tests/` project defining expected behavior and edge cases. Trigger test creation skills (xUnit, Moq, Shouldly, AAA pattern). Run `dotnet test` to confirm tests fail.
+2. **Green (Passing Code)**: Write the minimal implementation code in the feature command/query handler until `dotnet test` passes cleanly.
+3. **Refactor (Clean Code)**: Refactor and optimize implementation while verifying tests remain 100% green.
+
+---
+
+## 2. C# Syntax & Coding Conventions
 
 ### Object Instantiation & Use of `var`
 - **Strict Rule**: Use explicit type declaration on the left and target-typed `new()` on the right for named types.
@@ -47,7 +56,7 @@ timestamp: 2026-08-06T15:31:00-05:00
 
 ---
 
-## 2. Solution Layout (Vertical Slice + DDD)
+## 3. Solution Layout (Vertical Slice + DDD)
 
 `Solution.slnx` contains:
 - **SharedKernel:** No dependencies. Aggregate root base, entity, domain events dispatcher, and centralized error constants.
@@ -58,7 +67,7 @@ timestamp: 2026-08-06T15:31:00-05:00
 
 ---
 
-## 3. Controller Style & Resilience
+## 4. Controller Style & Resilience
 
 - **Fail-fast:** Guard clauses first, early return on failure, happy path last (no nesting).
 - Check `result.IsFailed` → return error response → then `return Ok(result.Value)`.
@@ -68,7 +77,7 @@ timestamp: 2026-08-06T15:31:00-05:00
 
 ---
 
-## 4. DI & Mediator & Configuration
+## 5. DI & Mediator & Configuration
 
 - Method injection preferred (`[FromServices]`) unless dependency is used by all methods.
 - Commands dispatched via Mediator (`ISender`). Queries read directly from `AppDbContext` using `AsNoTracking()`.
@@ -77,7 +86,7 @@ timestamp: 2026-08-06T15:31:00-05:00
 
 ---
 
-## 5. Skills Guidance for Backend
+## 6. Skills Guidance for Backend
 
 The agent must trigger available skills in the environment based on context:
 - **C# & .NET**: Trigger available C# language, ASP.NET Core API, and performance skills.
@@ -87,7 +96,7 @@ The agent must trigger available skills in the environment based on context:
 
 ---
 
-## 6. Sub-files
+## 7. Sub-files
 - DB & EF Core: [/architecture/backend-data.md](/architecture/backend-data.md)
 - DDD & CQRS: [/architecture/backend-ddd.md](/architecture/backend-ddd.md)
 - Multi-tenancy: [/architecture/backend-mt.md](/architecture/backend-mt.md)

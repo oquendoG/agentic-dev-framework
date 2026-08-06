@@ -15,7 +15,16 @@
 
 ---
 
-## 2. C# Syntax & Coding Conventions
+## 2. Test-Driven Development (TDD) Workflow
+
+Mandatory development workflow for business logic and backend features:
+1. **Red (Failing Test)**: Write unit/integration tests first in the `tests/` project defining expected behavior and edge cases. Trigger test creation skills (xUnit, Moq, Shouldly, AAA pattern). Run `dotnet test` to confirm tests fail.
+2. **Green (Passing Code)**: Write the minimal implementation code in the feature service/endpoint until `dotnet test` passes cleanly.
+3. **Refactor (Clean Code)**: Refactor and optimize implementation while verifying tests remain 100% green.
+
+---
+
+## 3. C# Syntax & Coding Conventions
 
 ### Object Instantiation & Use of `var`
 - **Strict Rule**: Explicit type declaration on the left, target-typed `new()` on the right for named types.
@@ -47,7 +56,7 @@
 
 ---
 
-## 3. Architecture & Design Patterns (Rich Domain Model)
+## 4. Architecture & Design Patterns (Rich Domain Model)
 
 - **Vertical Slice Architecture**: Entities control their own state (`private set`) and provide domain behavior.
 - **Entity Rules**:
@@ -61,7 +70,7 @@
 
 ---
 
-## 4. Data & EF Core Rules
+## 5. Data & EF Core Rules
 
 - **Primary Keys**: Use `Ulid` (C#) mapped to `char(26)` (PostgreSQL/SQL).
 - **Unique Business Keys**: Use `Unique Index` in database. NEVER use as Primary Keys.
@@ -72,7 +81,7 @@
 
 ---
 
-## 5. Skills Guidance for Backend
+## 6. Skills Guidance for Backend
 
 The agent must trigger available skills in the environment based on context:
 - **C# & .NET**: Trigger available C# language, ASP.NET Core API, and performance skills.

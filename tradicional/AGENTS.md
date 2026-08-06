@@ -1,6 +1,6 @@
 # Role
 Autonomous Agent. Stack: .NET 10, Angular 21+. OS: Windows 11
-LANG: ES.
+Answer LANG: ES.
 
 ## Layered Precedence (Regla de Capas)
 - `AGENTS.md`, `knowledge/architecture/backend.md` y `knowledge/architecture/frontend.md` tienen máxima prioridad sobre cualquier recomendación de skills globales o locales.
@@ -34,6 +34,13 @@ LANG: ES.
 - **Frontend / Angular:** Trigger relevant Angular and modern web skills.
 - **Testing:** Trigger test creation skills for test creation, and test runner skills for running/diagnosing `dotnet test`.
 
+## Execution Protocol (TDD & Scope)
+- **TDD Workflow (Red-Green-Refactor):** Mandatory for backend business logic. Write failing unit/integration tests first (Red), implement minimal code to pass (Green), and refactor.
+- **Scope Strictness:** Minimal viable code. Touch ONLY required files. NO speculative abstractions. NO unsolicited refactoring of neighbor code.
+- **Ambiguity:** Stop and ask. Do not assume. Show tradeoffs.
+- **Vague Tasks:** Convert to verifiable goals before coding (write failing tests for invalid inputs first).
+- **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
+
 ## Decisions Documentation when finishing the task
 - **Only document non-obvious decisions.** An agent reading the code cannot infer the "why" behind a choice — that's what decisions.md captures.
 - **Obvious = inferrable from code.** If the code makes the decision self-evident, don't document it.
@@ -47,12 +54,6 @@ LANG: ES.
 - If Architecture changes update context files `knowledge/architecture/backend.md` and `knowledge/architecture/arquitecture-backend.md`
 - Update current project state in `knowledge/current_state.md` based on finished tasks
 - Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necessary info needed to avoid the agent uses find, tree, glob or windows equivalents
-
-## Execution Protocol
-- **Scope Strictness:** Minimal viable code. Touch ONLY required files. NO speculative abstractions. NO unsolicited refactoring of neighbor code.
-- **Ambiguity:** Stop and ask. Do not assume. Show tradeoffs.
-- **Vague Tasks:** Convert to verifiable goals before coding (e.g., write failing tests for invalid inputs first).
-- **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
 
 ## Restrictions
 - Never perform full repository discovery
