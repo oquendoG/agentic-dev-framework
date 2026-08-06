@@ -2,6 +2,9 @@
 Autonomous Agent. Stack: .NET 10, Angular 21+. OS: Windows 11
 Answer LANG: ES.
 
+## MANDATORY SKILL EXECUTION
+- **`token-efficiency` Skill (STRICTLY ENFORCED)**: The agent MUST load and strictly execute the `token-efficiency` skill on EVERY turn. Delegate file copy/move/delete/replacements to OS commands, never read full files (>100 lines), use targeted line ranges (`sed` / `StartLine-EndLine`), and produce ultra-concise outputs.
+
 ## Layered Precedence (Regla de Capas)
 - `AGENTS.md`, `knowledge/architecture/backend.md`, `knowledge/architecture/backend-ddd.md` y `knowledge/architecture/frontend.md` tienen máxima prioridad sobre cualquier recomendación de skills globales o locales.
 
@@ -19,7 +22,6 @@ Answer LANG: ES.
   - Read also: `knowledge/architecture/frontend-structure.md`, `knowledge/architecture/frontend-state.md`
   **Decisions → `knowledge/decisions/frontend-decisions.md`** just if needed
 - **Feature-specific work:** ALWAYS read `Features/[Name]/AGENTS.md` before touching any feature code.
-- Always use `token-efficiency` skill
 
 ## Tech Rules & Conventions
 - **Source of Truth for Backend:** Read `knowledge/architecture/backend.md` and `knowledge/architecture/backend-ddd.md`.
@@ -30,6 +32,7 @@ Answer LANG: ES.
 - **try-catch:** ONLY on external boundaries. Global handlers cover internal services.
 
 ## Skills Guidance
+- **Token Efficiency:** MANDATORY `token-efficiency` skill active at all times.
 - **C# / .NET:** Trigger relevant C#, .NET API, and performance skills.
 - **Pattern Matching:** Trigger relevant C# pattern matching skills.
 - **Frontend / Angular:** Trigger relevant Angular and modern web skills.
@@ -42,7 +45,7 @@ Answer LANG: ES.
 - **Vague Tasks:** Convert to verifiable goals before coding (write failing tests for invalid inputs first).
 - **Architecture violation → stop and explain.** If a request breaks layer boundaries, warn the user.
 
-## Decisions Documentation when finishing the task
+## Decisions & Tasks Documentation when finishing the task
 - **Only document non-obvious decisions.** An agent reading the code cannot infer the "why" behind a choice — that's what decisions.md captures.
 - **Obvious = inferrable from code.** If the code makes the decision self-evident, don't document it.
 - **Non-obvious = requires context the code doesn't show.** Examples: non-intuitive config names, claim quirks, workarounds for platform bugs, security rationale, intentional trade-offs.
@@ -53,7 +56,7 @@ Answer LANG: ES.
   - `Application/Features/[Name]/decisions.md` — feature-local decisions - English
 - **No duplication.** Feature decisions.md references knowledge/ instead of repeating content.
 - If flows or architecture changes, document it in `knowledge/manual/manual_tecnico_dev.md` - spanish
-- Document finished tasks directly in `knowledge/tasks/[next number]-[task-name].md` - spanish
+- Document finished tasks with updated checklists (`- [x]`) in `knowledge/tasks/[modulo]/[siguiente-numero]-[nombre-tarea].md` - spanish
 - If Architecture changes update context files `knowledge/architecture/backend.md` and `knowledge/architecture/frontend-structure.md` - English
 - Update current project state in `knowledge/current_state.md` based on finished tasks - English
 - Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necessary info needed to avoid the agent uses find, tree, glob or windows equivalents - English
