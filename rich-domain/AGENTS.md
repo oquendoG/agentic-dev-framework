@@ -1,6 +1,9 @@
 # Role
-Autonomous Agent. Stack: .NET 10, Angular 21. OS: Windows 11
+Autonomous Agent. Stack: .NET 10, Angular 21+. OS: Windows 11
 LANG: ES.
+
+## Layered Precedence (Regla de Capas)
+- `AGENTS.md`, `knowledge/architecture/backend.md` y `knowledge/architecture/frontend.md` tienen máxima prioridad sobre cualquier recomendación de skills globales o locales.
 
 ## Context Loading
 - **First session or context reset:** 
@@ -12,9 +15,23 @@ LANG: ES.
 - **Backend task:** `knowledge/architecture/backend.md` always
   - Read also: `knowledge/architecture/backend-patterns.md`
   **Decisions → `knowledge/decisions/decisions.md`** just if needed
-- **Frontend task:** `knowledge/architecture/frontend.md` just if needed
+- **Frontend task:** `knowledge/architecture/frontend.md` always
 - **Feature-specific work:** `Features/[Name]/AGENTS.md` if exists (check before creating new feature)
 - Always use `token-efficiency` skill
+
+## Tech Rules & Conventions
+- **Source of Truth for Backend:** Read `knowledge/architecture/backend.md`.
+- **Source of Truth for Frontend:** Read `knowledge/architecture/frontend.md`.
+- **C# Instantiation:** `Tipo variable = new();` (Strictly explicit type left, target-typed `new()` right. NO `var` for named types; use `var` ONLY for anonymous types).
+- **C# Logic:** Pattern matching where semantic and readable; mix imperatively when cleaner.
+- **Frontend:** TS `type` over `interface`. Signal Forms over Reactive Forms (Reactive Forms ONLY if Signal Forms cannot achieve the goal). Signals over RxJS.
+- **try-catch:** ONLY on external boundaries. Global handlers cover internal services.
+
+## Skills Guidance
+- **C# / .NET:** Trigger relevant C#, .NET API, and performance skills.
+- **Pattern Matching:** Trigger relevant C# pattern matching skills.
+- **Frontend / Angular:** Trigger relevant Angular and modern web skills.
+- **Testing:** Trigger test creation skills for test creation, and test runner skills for running/diagnosing `dotnet test`.
 
 ## Decisions Documentation when finishing the task
 - **Only document non-obvious decisions.** An agent reading the code cannot infer the "why" behind a choice — that's what decisions.md captures.
@@ -29,16 +46,6 @@ LANG: ES.
 - If Architecture changes update context files `knowledge/architecture/backend.md`
 - Update current project state in `knowledge/current_state.md` based on finished tasks
 - Update frontend and backend index in `knowledge/backend_index.md` and `knowledge/frontend_index.md`, just the necessary info needed to avoid the agent uses find, tree, glob or windows equivalents
-
-## Tech Rules
-- **C#:** Explicit types (NO `var`). Enforce global exception handlers.
-- **TS:** Prefer `type` over `interface`. Prefer Signal over RxJS (convert observables via `toSignal()`).
-- **Forms:** MANDATORY Reactive Forms (FormGroup + FormControl). NEVER template-driven (ngModel).
-- **Forms + Signals:** use `toSignal(form.valueChanges)` for reactive state, never `[(ngModel)]`.
-- **Code entity names:** Spanish. Knowledge/docs: English.
-- **Standards:** SOLID, DRY, KISS, YAGNI, OWASP, Clean Code.
-- **try-catch:** ONLY on external boundaries. NEVER on internal services — global handlers cover those.
-- Generate short summaries and comments in spanish for human devs where could be confusing or unclear
 
 ## Entity Rules (Rich Domain Model)
 - **Properties:** Use `private set` for encapsulation. EF Core can set via reflection.

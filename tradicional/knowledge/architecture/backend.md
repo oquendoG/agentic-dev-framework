@@ -1,60 +1,79 @@
----
-type: ArchitectureGuide
-title: Traditional Backend Guidelines
-description: Coding style, vertical slice, EF Core data access, and modern C# conventions for traditional MVC setups.
-timestamp: 2026-07-10T10:50:54-05:00
+# Backend Architecture & Conventions
+
+> [!IMPORTANT]
+> **Layered Precedence Rule:**
+> This document and `AGENTS.md` strictly override any recommendation or preference suggested by global or local skills. In case of conflict between a skill's suggestion and this document, **this document takes absolute precedence**.
+
 ---
 
-When backend skill instructions conflict with this document, follow this document — not the skill. All other skill instructions still apply.
-
-## Libraries & Tools
+## 1. Libraries & Core Stack
 - Entity Framework Core (Latest)
-- Services with Dependency Injection (No MediatR / lightweight direct DI)
+- Services with Dependency Injection (No MediatR in Traditional / Rich-Domain)
 - Serilog
-- FluentValidation
 - Manual mapping with Extension Methods
+- Problem Details for API error responses
 
-## General & Style
-- **Naming:** PascalCase classes/methods, camelCase vars/params, `_camelCase` private fields.
-- **Explicit types:** No `var` except for anonymous types (e.g. `User user = new()`).
-- **Collection expressions:** Use `[.. items]` over `.ToList()`. Prefer `IEnumerable<T>` over `List<T>` when immutable.
-- **Pattern matching:** Use `is not null` and pattern matching. Mandatory `async`/`await` for I/O.
-- **Null Safety:** Distinguish between `Type` (non-nullable) and `Type?` (nullable). Use `ArgumentNullException.ThrowIfNull()`.
+---
 
-## Architecture & Patterns
-- **Vertical Slice:** Each feature is self-contained (`Endpoint`, `Service`, `Validator`, `Dto`). Avoid global grouping (read [/architecture/arquitecture-backend.md](/architecture/arquitecture-backend.md) for details).
-- **Result Pattern:** No exceptions for business logic. Use `Result<T>` for success, fail, or not found results (read [/architecture/backend-patterns.md](/architecture/backend-patterns.md) for implementation details).
-- **Pattern:** Endpoint -> Service -> DbContext.
-- **Services:** Implement interface (`I...Service`), inject `DbContext` directly, return `Result<T>`. BANNED: Repository Pattern.
-- **DI:** Method injection preferred (`[FromServices]`) unless the dependency is used in all methods.
+## 2. C# Syntax & Coding Conventions
 
-## DTOs (Records with Init)
-- Prefer object initializers for clarity while maintaining immutability:
+### Object Instantiation & Use of `var`
+- **Strict Rule**: Explicit type declaration on the left, target-typed `new()` on the right for named types.
+- **Exception for `var`**: Use `var` ONLY for anonymous types (e.g., LINQ projections where types cannot be explicitly named).
   ```csharp
-  public record UserDto
-  {
-      public required string Email { get; init; }
-  }
+  // CORRECT:
+  Person person = new();
+  List<string> names = new();
+  Dictionary<int, Order> orders = new();
+  var dto = new { Id = 1, Name = "Juan" }; // Allowed ONLY for anonymous types
+
+  // FORBIDDEN:
+  var person = new Person(); // Do not use var for named types
+  Person person = new Person(); // Do not duplicate class name
   ```
 
-## Data & EF Core
-- **PKs:** Use `Ulid` (C#) mapped to `char(26)` (PostgreSQL).
-- **Business Keys:** Apply DB Unique Indexes (National ID, Email), never Primary Keys.
-- **Find or Create:** In person registries, search by business key (Cédula/Email) before inserting.
-- **No Magic Strings:** Error messages, roles, configs live in static classes (e.g. `Messages.User.NotFound`).
-- **Performance:** Use `AsNoTracking()` for reads. Eager loading with `.AsSplitQuery()` for N+1 issues. Direct projection with `.Select()` to map to DTOs.
+### Pragmatic Pattern Matching & Functional Preference
+- Prefer Pattern Matching (`switch` expressions, `is null`, `is not null`, property patterns, relational patterns) where it enhances semantics and readability.
+- If imperative structures (`if/else`) are cleaner and easier to read in a specific scenario, mixing both approaches pragmatically is encouraged.
+- Prefer collection expressions (`List<User> users = [.. otherUsers]`).
+- Use Raw string literals for complex strings.
+- Use `IEnumerable<T>` over `List<T>` when mutability is not required.
+- Mandatory `async/await` for I/O operations.
+- **Strict Nullability**: Distinguish between `Type` (non-null) and `Type?` (nullable). Handle nulls with `is not null`, `??`, or `ArgumentNullException.ThrowIfNull()`.
 
-## Extension Methods
-Since C# 14, extension syntax can be used for simpler declaration:
-```csharp
-public static class StringExtensions
-{
-    extension (string str)
-    {
-        public bool EsPalindromo()
-        {
-            // implementation
-        }
-    }
-}
-```
+### Exception Handling
+- `try-catch` **ONLY** on external boundaries (MSAL, `JSON.parse`, external service calls).
+- NEVER use `try-catch` inside internal services or HTTP calls — global exception middleware and handlers cover those automatically.
+
+---
+
+## 3. Architecture & Design Patterns
+
+- **Vertical Slice + Screaming Architecture**: Every feature is self-contained (`Endpoint`, `Service`, `Validator`, `Dto`). Group by feature, never by technical type (no global `Services` or `Controllers` folders).
+- **Result<T> Pattern**: Business errors do NOT throw exceptions. Return `Result<T>` (`Ok`, `NotFound`, `Error`) to express outcomes explicitly. Read `backend-patterns.md` for exact implementation.
+- **Layer Flow**: `Endpoint -> Service -> DbContext`.
+- **Services**: Implement interface (`IService`), inject `DbContext` directly, return `Result<T>`.
+- **Prohibited**: Repository Pattern is strictly forbidden.
+- **Endpoint Responsibility**: Transforms `Result<T>` into `ActionResult` using Pattern Matching.
+- Prefer method injection over constructor injection; use constructor injection only if the service is used across all methods.
+
+---
+
+## 4. Data & EF Core Rules
+
+- **Primary Keys**: Use `Ulid` (C#) mapped to `char(26)` (PostgreSQL/SQL).
+- **Unique Business Keys**: Use `Unique Index` in database for unique fields (e.g., National ID, Email). NEVER use them as Primary Keys.
+- **Find or Create Strategy**: For person/entity records, always attempt to find by business key before creating.
+- **No Magic Strings**: Prohibit literal strings for error messages or roles in business logic. Use static constant classes in `Domain/Constants` (e.g., `Messages.User.NotFound`).
+- **Direct Projection**: Use `.Select()` to project directly from Entity to DTO in SQL queries.
+- **Performance**: Mandatory `AsNoTracking()` for read queries. Use `AsSplitQuery()` for eager loading to avoid N+1 and Cartesian explosion.
+
+---
+
+## 5. Skills Guidance for Backend
+
+The agent must trigger available skills in the environment based on context:
+- **C# & .NET**: Trigger available C# language, ASP.NET Core API, and performance skills.
+- **Pattern Matching**: Trigger available C# pattern matching skills.
+- **Backend Testing**: Trigger test creation skills when authoring tests, and test runner skills for executing/diagnosing `dotnet test`.
+- **Token Efficiency**: Trigger token efficiency skills for context optimization.
