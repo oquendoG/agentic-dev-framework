@@ -10,6 +10,7 @@ timestamp: 2026-07-29T10:00:00-05:00
 ## Backend
 * [Backend Architecture](/architecture/backend.md) — Service patterns, DI, and project structure.
 * [Backend Patterns](/architecture/backend-patterns.md) — Result<T>, guards, entity behavior, private set.
+* [Backend Testing Patterns](/architecture/testing-patterns.md) — TDD guidelines, Shouldly assertions, xUnit, Moq, and AAA pattern.
 
 ## Frontend
 * [Frontend Architecture](/architecture/frontend.md) — Component patterns and routing.
